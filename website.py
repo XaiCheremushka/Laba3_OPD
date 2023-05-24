@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect
 
 app = Flask(__name__)
 
+
 @app.route('/verification')
 def verif():
     return render_template("verification.html")
@@ -17,16 +18,13 @@ def log_in():
             logs = f.readlines()
             print(logs)
             if logs[0][:-1] == username and logs[1] == password:
-                return redirect('/verification')
+                return redirect('/verification') # перенаправление на другую страницу
             else:
                 error = "Неправильный логин или пароль. Попробуйте снова."
                 return render_template('log_in.html', error=error)
 
-
     else:
         return render_template("log_in.html")
-
-
 
 
 def start():
